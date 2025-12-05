@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        /* --- Light Mode (Clean White/Grey Theme) --- */
+        --background: 0 0% 100%;       /* White */
+        --foreground: 213 14% 12%;     /* Dark Grey Text */
+
+        --card: 0 0% 100%;
+        --card-foreground: 213 14% 12%;
+
+        --popover: 0 0% 100%;
+        --popover-foreground: 213 14% 12%;
+
+        --primary: 197 100% 40%;       /* Darker version of your blue for contrast on white */
+        --primary-foreground: 0 0% 100%;
+
+        --secondary: 210 40% 96.1%;
+        --secondary-foreground: 222.2 47.4% 11.2%;
+
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215.4 16.3% 46.9%;
+
+        --accent: 210 40% 96.1%;
+        --accent-foreground: 222.2 47.4% 11.2%;
+
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 214.3 31.8% 91.4%;
+        --input: 214.3 31.8% 91.4%;
+        --ring: 197 100% 40%;
+
+        --radius: 0.5rem;
+    }
+
+    .dark {
+        /* --- Dark Mode (Based on your Provided CSS) --- */
+
+        /* --bg-color: #1b1f24 -> HSL(213, 14%, 12%) */
+        --background: 213 14% 12%;
+
+        /* --text-color: #fff -> HSL(0, 0%, 100%) */
+        --foreground: 0 0% 100%;
+
+        /* --second-bg-color: #22282f -> HSL(210, 16%, 16%) */
+        --card: 210 16% 16%;
+        --card-foreground: 0 0% 100%;
+
+        --popover: 210 16% 16%;
+        --popover-foreground: 0 0% 100%;
+
+        /* --main-color: #13bbff -> HSL(197, 100%, 54%) */
+        --primary: 197 100% 54%;
+        --primary-foreground: 213 14% 12%; /* Dark text on bright button */
+
+        --secondary: 213 14% 18%; /* Slightly lighter than bg */
+        --secondary-foreground: 0 0% 98%;
+
+        --muted: 213 14% 18%;
+        /* --other-color: #c3cad5 -> HSL(216, 14%, 80%) */
+        --muted-foreground: 216 14% 80%;
+
+        --accent: 210 16% 20%;
+        --accent-foreground: 0 0% 98%;
+
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 0 0% 98%;
+
+        --border: 213 14% 20%;
+        --input: 213 14% 20%;
+        --ring: 197 100% 54%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+}
+
+/* Optional: Custom Scrollbar to match your theme */
+@layer utilities {
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: hsl(var(--background));
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: hsl(var(--muted-foreground) / 0.3);
+        border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: hsl(var(--primary));
+    }
+}
