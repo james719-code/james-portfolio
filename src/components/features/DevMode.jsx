@@ -27,7 +27,6 @@ const parseDate = (dateStr) => {
 
 export default function DevMode() {
 
-    // --- 1. Data Processing ---
     const {
         techData,
         allProjects,
@@ -45,7 +44,6 @@ export default function DevMode() {
         let webProjects = [];
         const androidKeywords = new Set(['Java', 'Kotlin', 'XML', 'Jetpack Compose', 'Room DB', 'Android']);
 
-        // 1. Flatten & Extract
         const projectRanges = _allProjects.map(p => {
             const firstDateStr = p.versions[0].date.split(' - ')[0];
             const lastDateStr = p.versions[p.versions.length - 1].date.split(' - ')[1] || firstDateStr;
@@ -61,7 +59,6 @@ export default function DevMode() {
             return { ...p, startTime: start, endTime: end };
         });
 
-        // 2. Tech Stats
         const globalTechCounts = {};
         _allProjects.forEach(p => p.versions.forEach(v => v.tools.forEach(t => globalTechCounts[t] = (globalTechCounts[t] || 0) + 1)));
 
@@ -70,9 +67,7 @@ export default function DevMode() {
             .sort((a, b) => b.count - a.count)
             .slice(0, 8);
 
-        // 3. Dates
         const allStartDates = projectRanges.map(p => p.startTime);
-        // Default to a reasonable start date if array is empty
         const minTime = allStartDates.length > 0 ? Math.min(...allStartDates) : new Date('2023-01-01').getTime();
         const maxTime = new Date().getTime();
 
@@ -84,21 +79,21 @@ export default function DevMode() {
             stats: {
                 totalProjects: _allProjects.length,
                 uniqueTech: Object.keys(globalTechCounts).length,
-                yearsActive: new Date().getFullYear() - new Date(minTime).getFullYear() + 1
+                yearsActive: new Date().getFullYear() - new Date(minTime).getFullYear()
             },
             androidStats: {
                 count: androidProjects.length,
                 percent: _allProjects.length ? Math.round((androidProjects.length / _allProjects.length) * 100) : 0,
-                topTool: "Kotlin" // Placeholder fallback
+                topTool: "Kotlin"
             },
             webStats: {
                 count: webProjects.length,
                 percent: _allProjects.length ? Math.round((webProjects.length / _allProjects.length) * 100) : 0,
-                topTool: "React" // Placeholder fallback
+                topTool: "React"
             },
             certStats: {
                 count: allCerts.length,
-                topIssuer: "DataCamp" // Placeholder fallback
+                topIssuer: "DataCamp"
             }
         };
     }, []);
@@ -106,7 +101,6 @@ export default function DevMode() {
     return (
         <div className="container mx-auto space-y-8 p-4 md:p-0">
 
-            {/* --- Header Section --- */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-6">
                 <div className="space-y-1">
                     <div className="flex items-center gap-2">
@@ -127,18 +121,15 @@ export default function DevMode() {
                     </div>
                 </div>
             </div>
-
-            {/* --- KPI Cards --- */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 <KPICard title="Deployed Projects" value={stats.totalProjects} icon={Layers} trend="Production Ready" />
                 <KPICard title="Total Certifications" value={certStats.count} icon={Award} trend="Continuous Learning" />
                 <KPICard title="Tech Stack Size" value={stats.uniqueTech} icon={Cpu} trend="Tools & Libraries" />
-                <KPICard title="Years Active" value={`${stats.yearsActive}+`} icon={CalendarDays} trend="Since 2023" />
+                <KPICard title="Years Active" value={`${stats.yearsActive}+`} icon={CalendarDays} trend="Since 2022" />
             </div>
 
             <div className="grid gap-8 md:grid-cols-12">
 
-                {/* --- Left Col: Focus & Timeline --- */}
                 <div className="md:col-span-7 flex flex-col gap-6">
                     {/* Focus Distribution */}
                     <div className="rounded-xl border border-border bg-card/50 p-6 shadow-sm">
@@ -179,7 +170,6 @@ export default function DevMode() {
                     </div>
                 </div>
 
-                {/* --- Right Col: Top Stack --- */}
                 <div className="md:col-span-5">
                     <div className="rounded-xl border border-border bg-card/50 p-6 shadow-sm h-full">
                         <h3 className="text-sm font-semibold mb-6 flex items-center gap-2">
@@ -215,7 +205,7 @@ export default function DevMode() {
     );
 }
 
-// --- IMPROVED COMPONENT: Slidable Timeline ---
+// --- Slidable Timeline ---
 const TimelineSlider = ({ minDate, maxDate, projects }) => {
     const [sliderValue, setSliderValue] = useState(100);
     const [selectedDate, setSelectedDate] = useState(new Date(maxDate));
@@ -243,11 +233,8 @@ const TimelineSlider = ({ minDate, maxDate, projects }) => {
     const formattedYear = selectedDate.getFullYear();
 
     // Filter active projects logic
-    // We show projects that were active within the specific month selected
     const activeProjects = projects.filter(p => {
         const time = selectedDate.getTime();
-        // A project is visible if the slider is between its start and end date
-        // Added a buffer of 1 month (approx 2.6M ms) so projects don't disappear instantly
         const buffer = 2629800000;
         return time >= p.startTime && time <= (p.endTime + buffer);
     });
@@ -299,7 +286,6 @@ const TimelineSlider = ({ minDate, maxDate, projects }) => {
                     </div>
                 </div>
 
-                {/* Actual Invisible Input - High Z-Index for Easy Grabbing */}
                 <input
                     type="range"
                     min="0"

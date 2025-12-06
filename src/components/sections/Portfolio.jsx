@@ -11,7 +11,7 @@ import {
 const Portfolio = () => {
 
     return (
-        <div id="portf" className="container mx-auto p-4 space-y-8">
+        <div id="portf" className="container mx-auto p-0 space-y-8">
             <PortfolioSection title="Commissioned Projects" projects={commissionedProjects} />
             <PortfolioSection title="School Projects" projects={schoolProjects} isAlternate />
             <PortfolioSection title="Personal Projects" projects={personalProjects} />

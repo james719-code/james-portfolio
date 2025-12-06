@@ -27,11 +27,9 @@ const ProjectCard = ({
                          downloadUrl,
                          attribution,
                          collaborators,
-                         // isBlur = true, // You can remove this prop now as it's unused
                      }) => {
     const [showHistory, setShowHistory] = useState(false);
 
-    // 1. Logic to determine if we have history or just one version
     const latestVersion = versions.length > 0 ? versions[versions.length - 1] : null;
     const pastVersions = versions.length > 1 ? versions.slice(0, -1).reverse() : [];
     const isSingleVersion = versions.length === 1;
@@ -45,7 +43,6 @@ const ProjectCard = ({
                     <>
                         <Image
                             src={bgImage}
-                            // UPDATED LINE BELOW: Removed the blur condition
                             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                             alt={`${title} Preview`}
                             width={500}
@@ -62,8 +59,6 @@ const ProjectCard = ({
 
                 {/* Floating Logo */}
                 {logoImage && (
-                    // Note: This div still has 'backdrop-blur-md' for the frosted glass effect under the logo.
-                    // If you want to remove that too, delete 'backdrop-blur-md' from the className below.
                     <div className="absolute bottom-4 left-4 h-16 w-16 overflow-hidden rounded-xl border-2 border-white/10 bg-black/40 backdrop-blur-md shadow-2xl">
                         <Image
                             src={logoImage}
@@ -100,7 +95,7 @@ const ProjectCard = ({
                     {description}
                 </p>
 
-                {/* Tech Stack (Always visible) */}
+                {/* Tech Stack */}
                 {latestVersion && (
                     <div className="mb-4">
                         <div className="flex flex-wrap gap-1.5">
@@ -137,7 +132,6 @@ const ProjectCard = ({
 
                 <div className="mt-auto"></div>
 
-                {/* --- History OR "Coming Soon" Section --- */}
                 <div className="border-t border-border pt-3 mt-2">
                     {isSingleVersion ? (
                         // CASE 1: Only 1 Version - Show "Updates Coming Soon"
@@ -147,7 +141,6 @@ const ProjectCard = ({
                             <Rocket size={14} className="text-primary/70" />
                         </div>
                     ) : (
-                        // CASE 2: Multiple Versions - Show History Accordion
                         <>
                             <button
                                 onClick={() => setShowHistory(!showHistory)}

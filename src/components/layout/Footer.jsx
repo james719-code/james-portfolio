@@ -15,7 +15,6 @@ const Footer = () => {
                     </p>
                 </div>
 
-                {/* Scroll to Top Button */}
                 <Link
                     href="#home"
                     aria-label="Scroll to top"

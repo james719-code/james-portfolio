@@ -11,10 +11,37 @@ const Hero = () => {
         visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
     };
 
+    const socialLinks = [
+        {
+            icon: <FaGithub />,
+            link: "https://github.com/james719-code",
+            label: "GitHub",
+            isDisabled: false
+        },
+        {
+            icon: <FaLinkedin />,
+            link: "https://ph.linkedin.com/in/james-ryan-gallego-27a337329",
+            label: "LinkedIn",
+            isDisabled: false
+        },
+        {
+            icon: <FaFacebook />,
+            link: "#",
+            label: "Facebook",
+            isDisabled: true
+        },
+        {
+            icon: <FaInstagram />,
+            link: "#",
+            label: "Instagram",
+            isDisabled: true
+        },
+    ];
+
     return (
         <section className="relative flex min-h-[90vh] w-full items-center justify-center overflow-hidden py-20" id="home">
 
-            {/* --- Background Design (Clean Grid) --- */}
+            {/* --- Background Design --- */}
             <div className="absolute inset-0 -z-10 h-full w-full bg-background">
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
             </div>
@@ -31,18 +58,13 @@ const Hero = () => {
                 >
                     <motion.div variants={fadeInUp}>
                         <span className="inline-block rounded-full bg-secondary/80 backdrop-blur-sm px-5 py-2 text-sm font-medium text-secondary-foreground border border-secondary">
-                            👋 Hi, There!
+                            Hi, There!
                         </span>
                     </motion.div>
 
                     {/* --- MAIN NAME TITLE --- */}
                     <div className="relative z-20 w-full">
-                        {/* FIX: Changed layout to flex-col (stack) on mobile, flex-row on larger screens.
-                           Added leading-none to reduce vertical gap on mobile.
-                        */}
                         <h1 className="font-extrabold tracking-tight leading-none flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 uppercase">
-
-                            {/* "I'M" */}
                             <motion.span
                                 variants={fadeInUp}
                                 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-foreground"
@@ -50,8 +72,6 @@ const Hero = () => {
                                 I&#39;M
                             </motion.span>
 
-                            {/* "JAMES RYAN" */}
-                            {/* FIX: Wrapped in a div that handles wrapping for the name parts specifically */}
                             <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-primary flex flex-wrap justify-center gap-x-3 md:gap-x-4">
                                 <ParticleText text="James" />
                                 <ParticleText text="Ryan" />
@@ -64,39 +84,29 @@ const Hero = () => {
                     </motion.p>
 
                     {/* Social Icons */}
-                    <motion.div variants={fadeInUp} className="flex gap-4 justify-center w-full">
-                        {[
-                            { icon: <FaGithub />, link: "#", label: "GitHub" },
-                            { icon: <FaLinkedin />, link: "#", label: "LinkedIn" },
-                            { icon: <FaFacebook />, link: "#", label: "Facebook" },
-                            { icon: <FaInstagram />, link: "#", label: "Instagram" },
-                        ].map((social, idx) => (
-                            <Link
-                                key={idx}
-                                href={social.link}
-                                aria-label={social.label}
-                                className="flex h-11 w-11 items-center justify-center rounded-full border border-input bg-background/50 backdrop-blur-md text-muted-foreground transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-1"
-                            >
-                                {social.icon}
-                            </Link>
+                    <motion.div variants={fadeInUp} className="flex gap-4 justify-center w-full z-50">
+                        {socialLinks.map((social, idx) => (
+                            <SocialButton key={idx} {...social} />
                         ))}
                     </motion.div>
 
-                    {/* CTA Buttons */}
-                    <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 pt-4 justify-center w-full sm:w-auto">
+                    <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 pt-4 justify-center w-full sm:w-auto z-10">
                         <Link
                             href="#contact"
                             className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-sm font-semibold text-primary-foreground shadow-md shadow-primary/20 transition-all duration-300 hover:translate-y-[-2px] hover:shadow-lg hover:shadow-primary/40 hover:bg-primary/90"
                         >
                             <FaPaperPlane /> Hire Me
                         </Link>
-                        <Link
-                            href="/resume.pdf"
+
+                        <a
+                            href="/file/resume.pdf"
+                            download="James_Ryan_Gallego_Resume.pdf"
                             target="_blank"
+                            rel="noopener noreferrer"
                             className="inline-flex items-center justify-center gap-2 rounded-full border border-input bg-background/50 backdrop-blur-md px-8 py-4 text-sm font-semibold transition-all duration-300 hover:bg-accent hover:text-accent-foreground hover:-translate-y-1"
                         >
                             <FaDownload /> Download CV
-                        </Link>
+                        </a>
                     </motion.div>
                 </motion.div>
             </div>
@@ -104,11 +114,32 @@ const Hero = () => {
     );
 };
 
+const SocialButton = ({ icon, link, label, isDisabled }) => {
+    return (
+        <a
+            href={isDisabled ? undefined : link}
+            target={isDisabled ? undefined : "_blank"}
+            rel={isDisabled ? undefined : "noopener noreferrer"}
+            aria-label={label}
+            aria-disabled={isDisabled}
+            onClick={(e) => isDisabled && e.preventDefault()}
+            className={`
+                flex h-11 w-11 items-center justify-center rounded-full border border-input backdrop-blur-md transition-all duration-300 z-10
+                ${isDisabled
+                ? "bg-background/20 text-muted-foreground/30 cursor-not-allowed border-dashed hover:border-input"
+                : "bg-background/50 text-muted-foreground hover:border-primary hover:text-primary hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-1 cursor-pointer"
+            }
+            `}
+        >
+            {icon}
+        </a>
+    );
+};
+
 // --- HELPER COMPONENTS FOR PARTICLE EFFECT ---
 
 const ParticleText = ({ text }) => {
     return (
-        // FIX: flex-nowrap prevents the word "JAMES" from breaking apart
         <span className="inline-flex flex-nowrap">
             {text.split("").map((char, index) => (
                 <ParticleLetter key={index} letter={char} index={index} />
@@ -122,7 +153,7 @@ const ParticleLetter = ({ letter, index }) => {
 
     useEffect(() => {
         const newParticles = Array.from({ length: 6 }).map(() => ({
-            x: (Math.random() - 0.5) * 100, // Reduced spread for mobile safety
+            x: (Math.random() - 0.5) * 100,
             y: (Math.random() - 0.5) * 100,
             delay: Math.random() * 0.3,
         }));

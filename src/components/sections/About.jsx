@@ -1,11 +1,10 @@
 "use client";
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion'; // Assuming you have framer-motion installed
-import { MapPin, Mail, Phone, Calendar, Briefcase, Code2 } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { MapPin, Mail, Phone, Briefcase, Code2 } from 'lucide-react';
 
 const About = () => {
-    // Animation variants
     const fadeIn = {
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
@@ -22,7 +21,6 @@ const About = () => {
             <div className="container mx-auto px-4 md:px-8">
                 <div className="grid md:grid-cols-2 gap-16 items-center">
 
-                    {/* Left Side: Image with Architectural Design */}
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
@@ -30,13 +28,11 @@ const About = () => {
                         variants={fadeIn}
                         className="relative mx-auto w-full max-w-[450px]"
                     >
-                        {/* Decorative Offset Border */}
+
                         <div className="absolute top-4 left-4 w-full h-full border-2 border-primary/20 rounded-2xl z-0"></div>
 
-                        {/* Decorative Dot Pattern Element */}
                         <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:8px_8px] z-0 opacity-50"></div>
 
-                        {/* Main Image */}
                         <div className="relative z-10 rounded-2xl overflow-hidden border border-border bg-muted shadow-2xl">
                             <Image
                                 src="/img/picture.webp"
@@ -49,7 +45,6 @@ const About = () => {
                         </div>
                     </motion.div>
 
-                    {/* Right Side: Content */}
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
@@ -76,10 +71,9 @@ const About = () => {
                             </motion.p>
                         </div>
 
-                        {/* Info Grid - "System Specs" Style */}
                         <motion.div variants={fadeIn} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {[
-                                { icon: <Briefcase size={18} />, label: "Experience", value: "2+ Years" },
+                                { icon: <Briefcase size={18} />, label: "Experience", value: "3+ Years" },
                                 { icon: <Code2 size={18} />, label: "Specialty", value: "Android & Web" },
                                 { icon: <Mail size={18} />, label: "Email", value: "gallegojamesryan719@gmail.com", isEmail: true },
                                 { icon: <Phone size={18} />, label: "Phone", value: "+63 951 984 9848" },

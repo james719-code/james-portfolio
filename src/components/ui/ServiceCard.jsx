@@ -7,15 +7,12 @@ const ServiceCard = ({ icon, title, description, link }) => {
 
             {/* Top Section */}
             <div>
-                {/* Icon Wrapper with hover fill effect */}
                 <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-2xl text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
                     {icon}
                 </div>
-
                 <h3 className="mb-2 text-xl font-bold tracking-tight text-foreground">
                     {title}
                 </h3>
-
                 <p className="text-sm leading-relaxed text-muted-foreground">
                     {description}
                 </p>

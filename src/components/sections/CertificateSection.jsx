@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Lock, Award } from "lucide-react";
 
 const CertificateSection = ({ certificates = [] }) => {
-    // Check if we have data, otherwise show placeholder
     const hasCertificates = certificates && certificates.length > 0;
 
     return (
@@ -17,21 +16,18 @@ const CertificateSection = ({ certificates = [] }) => {
             </div>
 
             {hasCertificates ? (
-                // --- REAL DATA GRID ---
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {certificates.map((cert, index) => (
                         <CertificateCard key={index} {...cert} />
                     ))}
                 </div>
             ) : (
-                // --- PLACEHOLDER / COMING SOON STATE ---
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     className="relative overflow-hidden rounded-2xl border border-dashed border-gray-300 bg-gray-50/50 p-12 text-center dark:border-gray-700 dark:bg-gray-900/50"
                 >
-                    {/* Background Pattern */}
                     <div className="absolute inset-0 opacity-[0.05]"
                          style={{ backgroundImage: 'radial-gradient(#888 1px, transparent 1px)', backgroundSize: '20px 20px' }}>
                     </div>
