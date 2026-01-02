@@ -6,19 +6,19 @@ const servicesData = [
         icon: <FaAndroid />,
         title: 'Android Development',
         description: 'I specialize in building powerful and user-friendly Android applications tailored to your needs. From concept to deployment, my solutions are designed to deliver seamless performance.',
-        link: '#'
+        link: '#portfolio'
     },
     {
         icon: <FaCog />,
         title: 'System Development',
         description: 'I provide end-to-end system development services, including planning, design, implementation, and maintenance of robust software systems.',
-        link: '#'
+        link: '#portfolio'
     },
     {
         icon: <FaGlobe />,
         title: 'Website Development',
         description: 'I have solid experience building responsive and visually appealing websites. I create functional web solutions using modern design practices like Next.js.',
-        link: '#'
+        link: '#contact'
     },
 ];
 

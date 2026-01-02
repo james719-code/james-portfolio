@@ -131,8 +131,8 @@ export const certificates = [
         title: "Understanding Artificial Intelligence",
         issuer: "DataCamp",
         date: "Sep 2025",
-        image: "/img/understanding_ai_cert.webp", // Suggestion: Use the DataCamp logo
-        link: "https://www.datacamp.com/completed/statement-of-accomplishment/course/f2ebb066212bdce72ba1296affbfe1217dbd9154", // PASTE YOUR DATACAMP CERTIFICATE LINK HERE
+        image: "/img/understanding_ai_cert.webp",
+        link: "https://www.datacamp.com/completed/statement-of-accomplishment/course/f2ebb066212bdce72ba1296affbfe1217dbd9154",
     },
     {
         title: "Data Manipulation with Pandas",
@@ -145,22 +145,22 @@ export const certificates = [
         title: "Javascript Essentials 1",
         issuer: "Cisco Networking Academy",
         date: "Aug 2025",
-        image: "/img/java_basic_certificate.webp", // Suggestion: Use the Cisco logo
-        link: "https://www.credly.com/badges/2cbdf46a-66ac-45ab-bb31-c10e0d2d25a3/public_url", // PASTE YOUR CREDLY/CISCO LINK HERE
+        image: "/img/java_basic_certificate.webp",
+        link: "https://www.credly.com/badges/2cbdf46a-66ac-45ab-bb31-c10e0d2d25a3/public_url",
     },
     {
         title: "Problem Solving (Basic)",
         issuer: "HackerRank",
         date: "Aug 2025",
-        image: "/img/problem_solving_basic_certificate.webp", // Suggestion: Use the HackerRank logo
-        link: "https://www.hackerrank.com/certificates/e2732cc96d59", // I constructed this based on your ID
+        image: "/img/problem_solving_basic_certificate.webp",
+        link: "https://www.hackerrank.com/certificates/e2732cc96d59",
     },
     {
         title: "SQL (Basic)",
         issuer: "HackerRank",
         date: "Aug 2025",
         image: "/img/sql_basic_certificate.webp",
-        link: "https://www.hackerrank.com/certificates/1cf8dc1505e2", // Constructed based on your ID
+        link: "https://www.hackerrank.com/certificates/1cf8dc1505e2",
     },
     {
         title: "Introduction to Python",
@@ -181,6 +181,6 @@ export const certificates = [
         issuer: "HackerRank",
         date: "Aug 2024",
         image: "/img/java_basic_certificate.webp",
-        link: "https://www.hackerrank.com/certificates/330af457c1b6", // Constructed based on your ID
+        link: "https://www.hackerrank.com/certificates/330af457c1b6",
     }
 ];
